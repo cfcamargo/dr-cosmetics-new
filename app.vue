@@ -3,6 +3,7 @@
     <main>
       <SectionHero />
       <SectionCards />
+      <SectionProducts />
       <SectionAbout />
       <SectionContact />
     </main>
