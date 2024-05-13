@@ -1,5 +1,5 @@
 <template>
-    <Container class="py-32 grid xs:grid-cols-1 md:grid-cols-2 gap-20 items-center">
+    <Container class="py-32 grid xs:grid-cols-1 md:grid-cols-2 gap-20 items-center" id="contact">
         <div class="flex flex-col gap-6">
             <h2 class="text-2xl font-bold text-gold">Entre em contato com a gente!</h2>
 

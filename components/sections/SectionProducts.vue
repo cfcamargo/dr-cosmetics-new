@@ -1,12 +1,12 @@
 <template>
-    <Container class="py-20">
+    <Container class="py-20" id="products">
         <div class="flex flex-col gap-4 justify-center items-center max-w-[700px] mx-auto">
             <h4 class="text-3xl font-bold text-gold">Nossos Produtos</h4>
             <p class="text-ligth text-center">Trabalhamos com uma vasta linha de aromatizantes, óleos, difusores, e cosméticos em geral. Com representação da linha Via Aroma.</p>
         </div>
 
 
-        <div class="flex gap-4 items-center py-10 justify-center">
+        <div class="flex xs:flex-col md:flex-row gap-4 items-center py-10 justify-center">
             <button @click="fetchByBrand(product.value)" class="rounded-full py-2 px-8 border border-gold text-gold hover:bg-pink hover:border-pink" v-for="(product, index) in productData" :key="index" :class="buttonSelected === product.value ? 'bg-pink border-pink' : 'bg-white border-gold'">
                 {{ product.button }}
             </button>
@@ -24,8 +24,6 @@
             <PackageOpen :size="30"/>
             <span>Nada para mostrar</span>
         </div>
-
-       
     </Container>
 </template>
 

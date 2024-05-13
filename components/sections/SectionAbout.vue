@@ -1,5 +1,5 @@
 <template>
-    <Container class="bg-pink rounded-2xl shadow-md grid xs:grid-cols-1 md:grid-cols-2 xs:gap-4 md:gap-10 xs:p-6 md:p-10 ">
+    <Container class="bg-pink rounded-2xl shadow-md grid xs:grid-cols-1 md:grid-cols-2 xs:gap-4 md:gap-10 xs:p-6 md:p-10" id="about">
         <div>
             <h3 class="text-2xl text-gold font-bold">Sobre Nós</h3>
             <span class="text-ligth">Bem-vindo à Dr Cosméticos e Essências !</span>
