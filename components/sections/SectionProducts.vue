@@ -17,7 +17,7 @@
         </div>
 
         <div class="grid grid-cols-4 gap-10" v-else-if="productsList.length > 0">
-            <CardProduct :title="product" :image="product.image" :description="product.description" v-for="(index, product) in productsList" :key="index"/>
+            <CardProduct :title="product.title" :image="product.image" :description="product.description" v-for="(product, index) in productsList" :key="index"/>
         </div>
 
         <div class="flex justify-center items-center gap-2 py-10 text-ligth" v-else>
@@ -32,17 +32,10 @@
 <script setup lang="ts">
 import { PackageOpen, LoaderCircle } from 'lucide-vue-next';
 
-
-interface ProductProps {
-    title: string,
-    image: string,
-    description: string
-}
-
 const buttonSelected = ref('ViaAroma')
 const loading = ref(false)
 
-const productsList = ref([])
+const productsList = ref<any>([])
 
 const productData = ref({
     ViaAroma: {
@@ -87,7 +80,41 @@ const fetchByBrand = async(brand: string) => {
     buttonSelected.value = brand
     loading.value = true
 
-    
+    const spreadsheetId = '1w32S825dtGOiosdFmzK2ChCDV1zB498PbYjnzgf5QCU'; 
+    const apiKey = 'AIzaSyDPg4y3-mp98bxMxYSzWZwQw8VWqmiZHc0';
+    const range = 'BD!A:D';
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        for(let i = 0; i < data.values.length; i++) {
+            if(data.values[i][0] === brand) {
+                let product = {
+                    brand: data.values[i][0],
+                    title: data.values[i][1],
+                    description: data.values[i][2],
+                    image: data.values[i][3]
+                }
+
+                productsList.value.push(product)
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching data: ', error);
+    } finally {
+        productsList.value = productsList.value.filter((product:any) => product.brand === brand); 
+        loading.value = false; 
+    }
+
 }
+
+
+onMounted(() => {
+    fetchByBrand('ViaAroma')
+})
 
 </script>
