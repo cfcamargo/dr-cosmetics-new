@@ -16,7 +16,7 @@
             <LoaderCircle :size="40" color="#D8AD6C" class="animate-spin"/>
         </div>
 
-        <div class="grid grid-cols-4 gap-10" v-else-if="productsList.length > 0">
+        <div class="grid xs:grid-cols-1 md:grid-cols-4 gap-10" v-else-if="productsList.length > 0">
             <CardProduct :title="product.title" :image="product.image" :description="product.description" v-for="(product, index) in productsList" :key="index"/>
         </div>
 
