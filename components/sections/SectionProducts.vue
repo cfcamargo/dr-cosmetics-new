@@ -91,14 +91,16 @@ const fetchByBrand = async(brand: string) => {
         const data = await response.json();
         for(let i = 0; i < data.values.length; i++) {
             if(data.values[i][0] === brand) {
-                let product = {
-                    brand: data.values[i][0],
-                    title: data.values[i][1],
-                    description: data.values[i][2],
-                    image: data.values[i][3]
-                }
+                if(data.values[i][1] && data.values[i][2] && data.values[i][3]){
+                    let product = {
+                        brand: data.values[i][0],
+                        title: data.values[i][1],
+                        description: data.values[i][2],
+                        image: data.values[i][3]
+                    }
 
-                productsList.value.push(product)
+                    productsList.value.push(product)
+                }
             }
         }
     } catch (error) {

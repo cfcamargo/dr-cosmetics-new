@@ -1,6 +1,8 @@
 <template>
     <div class="flex flex-col gap-2 shadow-md p-8">
-        <nuxt-img :src="props.image"/>
+        <div class="h-[200px]">
+            <nuxt-img :src="props.image" class="object-cover h-full"/>
+        </div>
 
 
         <div class="flex flex-col gap-2 justify-center items-center">
